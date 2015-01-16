@@ -1,2 +1,2 @@
-# HLSL.TypeProvider
+# Bloyteg.HLSL.TypeProvider
 F# type provider for HLSL shaders.
