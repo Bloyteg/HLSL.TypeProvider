@@ -61,7 +61,7 @@ type TemplateBuilder () =
     
     member __.For (items : 'T seq, template : 'T -> Template) =
                     (fun builder ->
-                         let enumerator = items.GetEnumerator ()
+                         use enumerator = items.GetEnumerator ()
                          while enumerator.MoveNext() do
                              (template enumerator.Current) builder)
                             
