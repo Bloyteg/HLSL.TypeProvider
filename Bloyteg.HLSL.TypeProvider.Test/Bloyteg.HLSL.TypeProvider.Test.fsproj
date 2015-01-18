@@ -71,9 +71,9 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bloyteg.HLSL.TypeProvider\Bloyteg.HLSL.TypeProvider.fsproj">
-      <Name>Bloyteg.HLSL.TypeProvider</Name>
-      <Project>{622dea4a-b265-453c-b3f2-e11d118b97f4}</Project>
+    <ProjectReference Include="..\Bloyteg.HLSL.TypeProvider.Internals\Bloyteg.HLSL.TypeProvider.Internals.fsproj">
+      <Name>Bloyteg.HLSL.TypeProvider.Internals</Name>
+      <Project>{af3b13e1-3aa6-4c1b-abf2-e62f0b735150}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

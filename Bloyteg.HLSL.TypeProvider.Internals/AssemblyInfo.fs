@@ -15,12 +15,10 @@
 module AssemblyInfo
 open System.Reflection
 open System.Runtime.InteropServices
-open Microsoft.FSharp.Core.CompilerServices
 
-[<assembly: AssemblyTitle("Bloyteg.HLSL.TypeProvider")>]
+[<assembly: AssemblyTitle("Bloyteg.HLSL.TypeProvider.Internals")>]
 [<assembly: AssemblyCopyright("Copyright (c) 2015 Joshua R. Rodgers")>]
 [<assembly: AssemblyVersion("1.0.0")>]
 [<assembly: AssemblyFileVersion("1.0.0")>]
-[<assembly: Guid("1EFD285D-6274-4A57-A707-D31A3EB133D9")>]
-[<assembly: TypeProviderAssembly>]
+[<assembly: Guid("B16AE7D8-06ED-4650-A29C-E09E8C5AC695")>]
 do ()

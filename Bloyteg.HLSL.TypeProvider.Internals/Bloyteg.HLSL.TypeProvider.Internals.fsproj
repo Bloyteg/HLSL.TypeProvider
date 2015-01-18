@@ -5,13 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>622dea4a-b265-453c-b3f2-e11d118b97f4</ProjectGuid>
+    <ProjectGuid>af3b13e1-3aa6-4c1b-abf2-e62f0b735150</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Bloyteg.HLSL.TypeProvider</RootNamespace>
-    <AssemblyName>Bloyteg.HLSL.TypeProvider</AssemblyName>
+    <RootNamespace>Bloyteg.HLSL.TypeProvider.Internals</RootNamespace>
+    <AssemblyName>Bloyteg.HLSL.TypeProvider.Internals</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
-    <Name>Bloyteg.HLSL.TypeProvider</Name>
+    <Name>Bloyteg.HLSL.TypeProvider.Internals</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\Bloyteg.HLSL.TypeProvider.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Bloyteg.HLSL.TypeProvider.Internals.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +30,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\Bloyteg.HLSL.TypeProvider.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Bloyteg.HLSL.TypeProvider.Internals.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -50,6 +50,8 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="TypeCompiler.fs" />
+    <Compile Include="Template.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,13 +86,6 @@
       <HintPath>..\packages\System.Reflection.Metadata.1.0.17-beta\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bloyteg.HLSL.TypeProvider.Internals\Bloyteg.HLSL.TypeProvider.Internals.fsproj">
-      <Name>Bloyteg.HLSL.TypeProvider.Internals</Name>
-      <Project>{af3b13e1-3aa6-4c1b-abf2-e62f0b735150}</Project>
-      <Private>True</Private>
-    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
