@@ -22,17 +22,17 @@ type Template = Template of (Text.StringBuilder -> unit)
         static member inline Lift(value: 'T) = 
             Template(fun builder -> builder.Append value |> ignore)
 
-        static member inline (&>>) (Template lhs, Template rhs) = 
+        static member inline (-->) (Template lhs, Template rhs) = 
             Template(fun builder -> builder |> lhs |> ignore
                                     builder |> rhs  |> ignore)
 
-        static member inline (&>>) (lhs : Template, rhs : 'T) = 
-            lhs &>> Template.Lift(rhs)
+        static member inline (-->) (lhs : Template, rhs : 'T) = 
+            lhs --> Template.Lift(rhs)
 
-        static member inline (&>>) (lhs : 'T, rhs : Template) = 
-            Template.Lift(lhs) &>> rhs
+        static member inline (-->) (lhs : 'T, rhs : Template) = 
+            Template.Lift(lhs) --> rhs
 
-        static member inline (&|>) (lhs : Template, func : string -> 'T) : 'T =
+        static member inline (|>>) (lhs : Template, func : string -> 'T) : 'T =
             !!lhs |> func
 
         static member (!!) (Template template) : string =
@@ -40,8 +40,8 @@ type Template = Template of (Text.StringBuilder -> unit)
             do template builder
             builder.ToString()
 
-let inline (&>>>) (lhs : 'S) (rhs : 'T) : Template = 
-    (lhs |> Template.Lift) &>> (rhs |> Template.Lift)
+let inline (!%) (lhs : 'S) : Template = 
+    (lhs |> Template.Lift)
 
 type TemplateBuilder() =
     member __.Yield(value : 'T) : Template = 
@@ -51,7 +51,7 @@ type TemplateBuilder() =
         template 
 
     member __.Combine(firstTemplate : Template, secondTemplate : Template) : Template =
-        firstTemplate &>> secondTemplate
+        firstTemplate --> secondTemplate
     
     member __.Delay (template : unit -> Template) : Template =
         Template(fun builder -> 
