@@ -50,6 +50,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="TemplateTests.fs" />
+    <Compile Include="TypeCompilerTests.fs" />
     <Content Include="packages.config" />
     <Content Include="app.config" />
   </ItemGroup>
@@ -69,8 +70,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Bloyteg.HLSL.TypeProvider.Internals\Bloyteg.HLSL.TypeProvider.Internals.fsproj">
       <Name>Bloyteg.HLSL.TypeProvider.Internals</Name>
       <Project>{af3b13e1-3aa6-4c1b-abf2-e62f0b735150}</Project>

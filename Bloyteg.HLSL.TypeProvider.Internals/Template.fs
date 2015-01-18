@@ -13,7 +13,7 @@
 // limitations under the License.
 // ========================================================================
 
-module Template
+module Bloyteg.HLSL.TypeProvider.Internals.Template
 
 open System
 

@@ -13,7 +13,7 @@
 // limitations under the License.
 // ========================================================================
 
-module TypeCompiler
+module Bloyteg.HLSL.TypeProvider.Internals.TypeCompiler
 
 open System
 open System.IO

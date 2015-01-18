@@ -13,58 +13,56 @@
 // limitations under the License.
 // ========================================================================
 
-namespace Bloyteg.HLSL.TypeProvider.Test
+
+[<NUnit.Framework.TestFixture>]
+module Bloyteg.HLSL.TypeProvider.Test.TemplateTests
 
 open NUnit.Framework
 open FsUnit
+open Bloyteg.HLSL.TypeProvider.Internals.Template
 
-open Template
+[<Test>]
+let ``!% should turn a value into a template`` () =
+    !%"Foo" |>> should equal "Foo"
 
-[<TestFixture>]
-module TemplateTests =
+[<Test>]
+let ``!! should apply template`` () =
+    !!(!%"Foo") |> should equal "Foo"
 
-    [<Test>]
-    let ``!% should turn a value into a template`` () =
-        !%"Foo" |>> should equal "Foo"
+[<Test>]
+let ``--> should combine a template with a value`` () =
+    let template = !%"Foo"
+    (template --> "Bar") |>> should equal "FooBar"
 
-    [<Test>]
-    let ``!! should apply template`` () =
-        !!(!%"Foo") |> should equal "Foo"
+[<Test>]
+let ``--> should combine a value with a template`` () =
+    let template = !%"Bar"
+    ("Foo" --> template) |>> should equal "FooBar"
 
-    [<Test>]
-    let ``--> should combine a template with a value`` () =
-        let template = !%"Foo"
-        (template --> "Bar") |>> should equal "FooBar"
+[<Test>]
+let ``--> should combine two templates`` () =
+    let template1 = !%"Foo"
+    let template2 = !%"Bar"
+    (template1 --> template2) |>> should equal "FooBar"
 
-    [<Test>]
-    let ``--> should combine a value with a template`` () =
-        let template = !%"Bar"
-        ("Foo" --> template) |>> should equal "FooBar"
+[<Test>]
+let ``&|> should unwrap a template and apply it to a function`` () =
+    let template = !%"Foo"
+    template |>> Some |> should equal (Some("Foo"))
 
-    [<Test>]
-    let ``--> should combine two templates`` () =
-        let template1 = !%"Foo"
-        let template2 = !%"Bar"
-        (template1 --> template2) |>> should equal "FooBar"
+[<Test>]
+let ``yield in template workflow should produce the given value`` () =
+    template { yield "Foo" } |>> should equal "Foo"
 
-    [<Test>]
-    let ``&|> should unwrap a template and apply it to a function`` () =
-        let template = !%"Foo"
-        template |>> Some |> should equal (Some("Foo"))
+[<Test>]
+let ``multiple yields in template workflow should produce the given value`` () =
+    template { yield "Foo"; yield "Bar" } |>> should equal "FooBar"
 
-    [<Test>]
-    let ``yield in template workflow should produce the given value`` () =
-        template { yield "Foo" } |>> should equal "Foo"
+[<Test>]
+let ``yield! in template workflow should produce the given value`` () =
+    let foo = template { yield "Foo" }
+    template { yield! foo } |>> should equal "Foo"
 
-    [<Test>]
-    let ``multiple yields in template workflow should produce the given value`` () =
-        template { yield "Foo"; yield "Bar" } |>> should equal "FooBar"
-
-    [<Test>]
-    let ``yield! in template workflow should produce the given value`` () =
-        let foo = template { yield "Foo" }
-        template { yield! foo } |>> should equal "Foo"
-
-    [<Test>]
-    let ``for in template workflow should produce the given value`` () =
-        template { for i in 0..9 do yield i } |>> should equal "0123456789"
+[<Test>]
+let ``for in template workflow should produce the given value`` () =
+    template { for i in 0..9 do yield i } |>> should equal "0123456789"
