@@ -15,4 +15,20 @@
 
 module Bloyteg.HLSL.TypeProvider.Internals.ShaderCompiler
 
+open SharpDX
 open SharpDX.D3DCompiler
+
+type CompiledShaderReflectionResult = unit
+
+type CompiledShader = {
+    byteCode: byte[]
+    reflectionResult: CompiledShaderReflectionResult
+}
+
+let compile (entryPoint: string) (profile: string) (stream: System.IO.StreamReader) =
+    use shaderBytecode = ShaderBytecode.Compile(stream.ReadToEnd(), entryPoint, profile)
+
+    if shaderBytecode.ResultCode <> Result.Ok then
+        failwith shaderBytecode.Message
+    else
+        { byteCode = shaderBytecode.Bytecode; reflectionResult = () }
